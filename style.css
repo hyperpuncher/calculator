@@ -25,9 +25,17 @@ button {
   align-items: center;
 }
 
+.screen {
+  height: 50px;
+  width: 210px;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
 .buttons {
   display: grid;
   gap: 3px;
   grid-template-columns: repeat(4, 0fr);
+  margin-top: 10px;
 }
 
