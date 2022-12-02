@@ -3,6 +3,22 @@
   src: url("/digital.ttf");
 }
 
+html,
+body,
+.aligner {
+  background-color: rgb(209, 209, 209);
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.aligner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .screen {
   font-size: xx-large;
   font-family: "digital";
@@ -13,6 +29,12 @@ button {
   font-family: monospace;
   height: 50px;
   aspect-ratio: 1;
+  border-radius: 3px;
+  border: 0px;
+}
+
+button:active {
+  filter: brightness(90%);
 }
 
 .container,
@@ -23,13 +45,24 @@ button {
 .container {
   flex-direction: column;
   align-items: center;
+  border-radius: 7px;
+  padding: 10px;
+  height: fit-content;
+  width:fit-content;
+  box-shadow: 8px 8px 25px;
+  background-color: rgb(20, 20, 20);
+
 }
 
 .screen {
-  height: 50px;
-  width: 210px;
+  width: 195px;
   justify-content: flex-end;
   align-items: flex-end;
+  color: rgb(20, 20, 20);
+  overflow: hidden;
+  background-color: whitesmoke;
+  padding: 8px;
+  border-radius: 5px;
 }
 
 .buttons {
@@ -39,3 +72,11 @@ button {
   margin-top: 10px;
 }
 
+.number {
+  background-color: whitesmoke;
+}
+
+.operator,
+#operate {
+  background-color: rgb(210, 255, 73);
+}
