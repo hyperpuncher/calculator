@@ -21,33 +21,63 @@ let displayValue = '';
 let n1 = 0;
 let n2 = 0;
 let operator = '';
+const operatorSymbols = ['=', '*', '/', '-', '+', '%']
 
 
-numberButtons.forEach(btn => btn.addEventListener('click', (e) => {
-  if (typeof displayValue !== 'number' && displayValue.includes('.') && e.target.id === '.') return 0;
-  else screenContent(e);
-}));
+window.addEventListener('keydown', (e) => {
+  console.log(e.target.id);
+  if (parseInt(e.key) >= 0 && parseInt(e.key) <= 9) numbers(e);
 
-operatorButtons.forEach(btn => btn.addEventListener('click', (e) => {
-  if (e.target.id === 'reset') {
+})
+
+numberButtons.forEach(btn => btn.addEventListener('click', (e) => numbers(e)));
+
+operatorButtons.forEach(btn => btn.addEventListener('click', (e) => operators(e)));
+
+equalButton.addEventListener('click', () => equals());
+
+
+
+function screenContent(btn) {
+  if (displayValue == operator 
+    || displayValue == 'reset' 
+    || displayValue == 'R U STUPID?' 
+    || typeof displayValue === 'number') displayValue = '';
+  if (btn.target.id) {
+    displayValue += btn.target.id;
+  } else {
+    displayValue += btn.key;
+  }
+  screen.innerText = displayValue;
+}
+
+function numbers(btn) {
+  if (typeof displayValue !== 'number' 
+    && displayValue.includes('.') 
+    && btn.target.id === '.') return 0;
+  else screenContent(btn);
+}
+
+function operators(btn) {
+  if (btn.target.id === 'reset') {
     n1 = 0;
     n2 = 0;
     operator = '';
   } else if (displayValue === operator) {
-    operator = e.target.id;
+    operator = btn.target.id;
   } else if (operator) {
     n2 = parseFloat(displayValue)
     n1 = operate(operator, n1, n2);
-    operator = e.target.id;
+    operator = btn.target.id;
   } else {
     n1 = parseFloat(displayValue);
-    operator = e.target.id;
+    operator = btn.target.id;
   }
   displayValue = '';
-  screenContent(e);
-}));
+  screenContent(btn);
+}
 
-equalButton.addEventListener('click', () => {
+function equals() {
   if (operator) {
     n2 = parseFloat(displayValue);
     displayValue = operate(operator, n1, n2);
@@ -57,13 +87,4 @@ equalButton.addEventListener('click', () => {
     n2 = 0;
     operator = '';
   }
-});
-
-function screenContent(btn) {
-  if (displayValue == operator 
-    || displayValue == 'reset' 
-    || displayValue == 'R U STUPID?' 
-    || typeof displayValue === 'number') displayValue = '';
-  displayValue += btn.target.id;
-  screen.innerText = displayValue;
 }
